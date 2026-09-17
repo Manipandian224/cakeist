@@ -54,15 +54,15 @@ export default function Page() {
     setSelected(null)
     setCartOpen(true)
   }
-  const orderText = cart.map((item) => `• ${item.name} (${item.weight}) x${item.quantity} — ${money(item.totalPrice * item.quantity)}\n  Image: ${item.image}`).join('\n')
+  const orderText = cart.map((item) => `• ${item.name}\n  Category: ${item.category}\n  Weight: ${item.weight} · Quantity: ${item.quantity}\n  Price: ${money(item.totalPrice * item.quantity)}\n  Product image: ${item.image}`).join('\n\n')
   const openOrderForm = (target: 'cart' | Product) => setOrderTarget(target)
   const submitWhatsAppOrder = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const form = new FormData(event.currentTarget)
     const customer = `Customer details:\n• Name: ${form.get('name')}\n• Phone: ${form.get('phone')}\n• Address: ${form.get('address')}\n• Notes: ${form.get('notes') || 'None'}`
-    const items = orderTarget === 'cart' ? orderText : `• ${orderTarget?.name} (0.5 kg) — ${money(orderTarget?.price ?? 0)}\n  Image: ${orderTarget?.image}`
+    const items = orderTarget === 'cart' ? orderText : `• ${orderTarget?.name}\n  Category: ${orderTarget?.category}\n  Weight: 0.5 kg · Quantity: 1\n  Price: ${money(orderTarget?.price ?? 0)}\n  Product image: ${orderTarget?.image}`
     const total = orderTarget === 'cart' ? subtotal : orderTarget?.price ?? 0
-    const message = `Hello CakeShop Hestia!\\n\\n${customer}\\n\\nOrder details:\\n${items}\\n\\nTotal: ${money(total)}\\n\\nPlease confirm my order.`
+    const message = `Hello CakeShop Hestia!\n\n${customer}\n\nOrder details:\n${items}\n\nTotal: ${money(total)}\n\nPlease confirm availability, delivery time and payment details.`
     window.open(`https://wa.me/${whatsapp}?text=${encodeURIComponent(message)}`, '_blank')
     setOrderTarget(null)
     setCartOpen(false)
