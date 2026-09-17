@@ -7,8 +7,8 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair' })
 
 export const metadata: Metadata = {
-  title: 'The Cakeist Hestia | Homemade Bakes in Madurai',
-  description: 'Fresh, homemade cakes, brownies, cookies and savouries baked with love by Sasmitha in Madurai.',
+  title: 'CakeShop Hestia | Artisan Cakes in Madurai',
+  description: 'Premium artisan cakes, classic flavours and custom celebration cakes freshly baked in Madurai.',
   generator: 'v0.app',
 }
 
